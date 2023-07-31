@@ -1,2 +1,5 @@
-package utils;public interface Constants {
+package utils;
+
+public interface Constants {
+    String url = "https://www.thebay.com";
 }

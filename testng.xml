@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="C:/Users/Avneet/IdeaProjects/bay"><classes/></test></suite>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="utils.SuiteListeners"/>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="C:/Users/Avneet/IdeaProjects/bay">
+        <parameter name="browserName" value="chrome"/>
+        <classes>
+            <class name="SmokeTests"/>
+        </classes>
+    </test>
+</suite>
