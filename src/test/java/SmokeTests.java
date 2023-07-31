@@ -1,4 +1,3 @@
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pageEvents.HomePageEvents;
 import pageEvents.ProductArrayEvents;
