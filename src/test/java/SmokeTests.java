@@ -1,3 +1,4 @@
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pageEvents.HomePageEvents;
 import pageEvents.ProductArrayEvents;
@@ -22,8 +23,9 @@ public class SmokeTests extends BaseTest {
 
         ProductArrayEvents productArray = new ProductArrayEvents();
         productArray.verifySearchResults("towel");
+        //scroll into view
         productArray.hoverOverProduct(1);
-        productArray.clickOnQuickView();
+        productArray.clickOnQuickView(1);
 
         QuickViewEvents quickView = new QuickViewEvents();
         quickView.quickViewAddToBag();

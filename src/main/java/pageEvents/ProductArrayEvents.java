@@ -16,10 +16,10 @@ public class ProductArrayEvents {
         Assert.assertEquals(cleanSearchResult, searchQuery);
     }
 
-    public void verifyCartTotal(int expectedTotal){
+    public void verifyCartTotal(int expectedTotalInt){
         FetchElements fetch = new FetchElements();
-        String actualTotalString = fetch.getElement("XPATH",ProductArrayElements.cartCount).getText();
-        int actualTotal = Integer.parseInt(actualTotalString);
+        String actualTotal = fetch.getElement("XPATH",ProductArrayElements.cartCount).getText();
+        String expectedTotal = String.valueOf(expectedTotalInt);
         Assert.assertEquals(actualTotal, expectedTotal);
     }
 
@@ -31,8 +31,9 @@ public class ProductArrayEvents {
         actions.moveToElement(hoverElement).perform();
     }
 
-    public void clickOnQuickView(){
+    public void clickOnQuickView(int product){
         FetchElements fetch = new FetchElements();
-        fetch.getElement("LINKTEXT",ProductArrayElements.quickView).click();
+        String quickViewID = "(" + ProductArrayElements.quickView +")["+product+"]";
+        fetch.getElement("XPATH",quickViewID).click();
     }
 }
