@@ -16,6 +16,8 @@ public class FetchElements {
                 return BaseTest.driver.findElement(By.tagName(identifier));
             case "XPATH":
                 return BaseTest.driver.findElement(By.xpath(identifier));
+            case "LINKTEXT":
+                return BaseTest.driver.findElement(By.linkText(identifier));
             default:
                 return null;
         }
@@ -30,6 +32,8 @@ public class FetchElements {
                 return BaseTest.driver.findElements(By.tagName(identifier));
             case "XPATH":
                 return BaseTest.driver.findElements(By.xpath(identifier));
+            case "LINKTEXT":
+                return BaseTest.driver.findElements(By.linkText(identifier));
             default:
                 return null;
         }
