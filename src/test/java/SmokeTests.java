@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import pageEvents.HomePageEvents;
 import pageEvents.ProductArrayEvents;
@@ -7,7 +8,7 @@ import utils.BaseTest;
 
 public class SmokeTests extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     public void testSearchBox(){
         HomePageEvents homePage = new HomePageEvents();
         homePage.searchProduct("towel");
@@ -31,6 +32,15 @@ public class SmokeTests extends BaseTest {
         quickView.quickViewAddToBag();
 
         productArray.verifyCartTotal(1);
+    }
+    @Test(enabled = true)
+    public void autosuggestionSearch(){
+        HomePageEvents homePage = new HomePageEvents();
+        homePage.searchProductWithAutosugtn("mango","mango women in Women's Clothing");
+        ProductArrayEvents productArray = new ProductArrayEvents();
+        productArray.verifySearchResults("mango women");
+        productArray.sortinresults("Newest");
+
     }
 
 }

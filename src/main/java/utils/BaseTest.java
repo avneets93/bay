@@ -8,10 +8,8 @@ import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -23,6 +21,7 @@ import org.testng.annotations.*;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
@@ -51,7 +50,7 @@ public class BaseTest {
         setupDriver(browserName);
         driver.get(Constants.url);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         dismissSavingsPopUp();
     }
     @AfterMethod
@@ -80,19 +79,19 @@ public class BaseTest {
 
     public void setupDriver(String browserName){
         if(browserName.equalsIgnoreCase("chrome")){
-            WebDriverManager.chromedriver().setup();
+           // WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
         } else if (browserName.equalsIgnoreCase("firefox")) {
-            WebDriverManager.firefoxdriver().setup();
+            //WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
         }
         else {
-            WebDriverManager.edgedriver().setup();
+           // WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
         }
     }
     public void dismissSavingsPopUp(){
-        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(20));
         try{
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("bx-form-2131232-step-1")));
             driver.findElement(By.id("bx-close-inside-2131232")).click();
