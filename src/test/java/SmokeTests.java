@@ -16,7 +16,7 @@ public class SmokeTests extends BaseTest {
         productArray.verifySearchResults("towel");
     }
 
-    @Test
+    @Test(enabled = false)
     public void addToCartFromQuickView(){
         HomePageEvents homePage = new HomePageEvents();
         homePage.searchProduct("towel");

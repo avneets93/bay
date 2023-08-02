@@ -11,9 +11,13 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -48,6 +52,7 @@ public class BaseTest {
         driver.get(Constants.url);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        dismissSavingsPopUp();
     }
     @AfterMethod
     public void tearDown(ITestResult result){
@@ -84,6 +89,16 @@ public class BaseTest {
         else {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
+        }
+    }
+    public void dismissSavingsPopUp(){
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        try{
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("bx-form-2131232-step-1")));
+            driver.findElement(By.id("bx-close-inside-2131232")).click();
+        }
+        catch (Exception e){
+            logger.skip("Savings pop up did not appear.");
         }
     }
 }
