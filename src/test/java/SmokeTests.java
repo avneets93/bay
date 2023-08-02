@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pageEvents.HomePageEvents;
+import pageEvents.PDPEvents;
 import pageEvents.ProductArrayEvents;
 import pageEvents.QuickViewEvents;
 import utils.BaseTest;
@@ -31,6 +32,15 @@ public class SmokeTests extends BaseTest {
         quickView.quickViewAddToBag();
 
         productArray.verifyCartTotal(1);
+    }
+
+    @Test
+    public void PDPQuantityEditor(){
+        HomePageEvents homePage = new HomePageEvents();
+        homePage.searchProduct("0600086722740");
+        PDPEvents pdp = new PDPEvents();
+        pdp.increaseQuantity();
+        //pdp.decreaseQuantity();
     }
 
 }

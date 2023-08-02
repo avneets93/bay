@@ -71,7 +71,7 @@ public class BaseTest {
         else {
             logger.log(Status.SKIP, result.getTestName());
         }
-        driver.quit();
+        //driver.quit();
     }
     @AfterTest
     public void teardownReport(){
