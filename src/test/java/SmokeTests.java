@@ -1,4 +1,3 @@
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pageEvents.HomePageEvents;
 import pageEvents.PDPEvents;
@@ -40,7 +39,7 @@ public class SmokeTests extends BaseTest {
         homePage.searchProduct("0600086722740");
         PDPEvents pdp = new PDPEvents();
         pdp.increaseQuantity();
-        //pdp.decreaseQuantity();
+        pdp.decreaseQuantity();
     }
 
 }
