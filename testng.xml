@@ -9,7 +9,7 @@
         <classes>
             <class name="SmokeTests">
                 <methods>
-                    <include name="PDPQuantityEditor"/>
+                    <include name="FooterLinks"/>
                 </methods>
             </class>
 

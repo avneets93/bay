@@ -1,8 +1,5 @@
 import org.testng.annotations.Test;
-import pageEvents.HomePageEvents;
-import pageEvents.PDPEvents;
-import pageEvents.ProductArrayEvents;
-import pageEvents.QuickViewEvents;
+import pageEvents.*;
 import utils.BaseTest;
 
 public class SmokeTests extends BaseTest {
@@ -40,6 +37,13 @@ public class SmokeTests extends BaseTest {
         PDPEvents pdp = new PDPEvents();
         pdp.increaseQuantity();
         pdp.decreaseQuantity();
+    }
+
+    @Test
+    public void FooterLinks(){
+        FooterEvents footer = new FooterEvents();
+        footer.clickOnHelpAndFAQ();
+        footer.clickOnAffirm();
     }
 
 }

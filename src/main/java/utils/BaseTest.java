@@ -99,6 +99,7 @@ public class BaseTest {
         try{
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("bx-form-2131232-step-1")));
             driver.findElement(By.id("bx-close-inside-2131232")).click();
+            driver.navigate().refresh();
         }
         catch (Exception e){
             logger.skip("Savings pop up did not appear.");
