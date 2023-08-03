@@ -11,6 +11,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -70,7 +71,7 @@ public class BaseTest {
         else {
             logger.log(Status.SKIP, result.getTestName());
         }
-        driver.quit();
+        //driver.quit();
     }
     @AfterTest
     public void teardownReport(){
@@ -79,8 +80,12 @@ public class BaseTest {
 
     public void setupDriver(String browserName){
         if(browserName.equalsIgnoreCase("chrome")){
-           // WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+
+            ChromeOptions options = new ChromeOptions();
+            options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+            //WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver(options);
+
         } else if (browserName.equalsIgnoreCase("firefox")) {
             //WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
@@ -95,6 +100,7 @@ public class BaseTest {
         try{
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("bx-form-2131232-step-1")));
             driver.findElement(By.id("bx-close-inside-2131232")).click();
+            driver.navigate().refresh();
         }
         catch (Exception e){
             logger.skip("Savings pop up did not appear.");

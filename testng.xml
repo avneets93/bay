@@ -7,7 +7,12 @@
     <test verbose="10" preserve-order="true" name="Volumes/Samsung_T5/bay">
         <parameter name="browserName" value="chrome"/>
         <classes>
-            <class name="SmokeTests"/>
+            <class name="SmokeTests">
+                <methods>
+                    <include name="FooterLinks"/>
+                </methods>
+            </class>
+
         </classes>
     </test>
 </suite>
