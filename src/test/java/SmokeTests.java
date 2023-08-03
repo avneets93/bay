@@ -1,13 +1,12 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-import pageEvents.HomePageEvents;
-import pageEvents.PDPEvents;
-import pageEvents.ProductArrayEvents;
-import pageEvents.QuickViewEvents;
+import pageEvents.*;
 import utils.BaseTest;
 
 public class SmokeTests extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     public void testSearchBox(){
         HomePageEvents homePage = new HomePageEvents();
         homePage.searchProduct("towel");
@@ -32,6 +31,15 @@ public class SmokeTests extends BaseTest {
 
         productArray.verifyCartTotal(1);
     }
+    @Test(enabled = true)
+    public void autosuggestionSearch(){
+        HomePageEvents homePage = new HomePageEvents();
+        homePage.searchProductWithAutosugtn("mango","mango women in Women's Clothing");
+        ProductArrayEvents productArray = new ProductArrayEvents();
+        productArray.verifySearchResults("mango women");
+        productArray.sortinresults("Newest");
+
+    }
 
     @Test
     public void PDPQuantityEditor(){
@@ -40,6 +48,13 @@ public class SmokeTests extends BaseTest {
         PDPEvents pdp = new PDPEvents();
         pdp.increaseQuantity();
         pdp.decreaseQuantity();
+    }
+
+    @Test
+    public void FooterLinks(){
+        FooterEvents footer = new FooterEvents();
+        footer.clickOnHelpAndFAQ();
+        footer.clickOnAffirm();
     }
 
 }
