@@ -4,7 +4,7 @@
     <listeners>
         <listener class-name="utils.SuiteListeners"/>
     </listeners>
-    <test verbose="2" preserve-order="true" name="C:/Users/Avneet/IdeaProjects/bay">
+    <test verbose="10" preserve-order="true" name="Volumes/Samsung_T5/bay">
         <parameter name="browserName" value="chrome"/>
         <classes>
             <class name="SmokeTests">
