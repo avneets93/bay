@@ -3,7 +3,6 @@ package pageEvents;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import pageObjects.ProductArrayElements;
-import pageObjects.QuickViewElements;
 import utils.BaseTest;
 import utils.FetchElements;
 

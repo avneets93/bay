@@ -24,7 +24,7 @@ public class HomePageEvents {
         List<WebElement> suggestionsList = autosuggestion.findElements(By.tagName("li"));
         String getTextsuggestion = suggestionsList.get(1).getText();
         //fetch.explictwait("CSS", HomePageElements.autosuggestion);
-        fetch.implcitwait("CSS", HomePageElements.autosuggestion);
+        //fetch.implcitwait("CSS", HomePageElements.autosuggestion);
         suggestionsList.get(1).click();
 
         Assert.assertEquals(getTextsuggestion, suggestionname);
