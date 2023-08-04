@@ -8,9 +8,7 @@
         <parameter name="browserName" value="chrome"/>
         <classes>
             <class name="SmokeTests">
-                <methods>
-                    <include name="FooterLinks"/>
-                </methods>
+
             </class>
 
         </classes>
