@@ -99,7 +99,7 @@ public class BaseTest {
             Utilities util = new Utilities();
             util.explictwait("ID","bx-close-inside-2131232",10);
             driver.findElement(By.id("bx-close-inside-2131232")).click();
-            driver.navigate().refresh();
+            //driver.navigate().refresh();
         }
         catch (Exception e){
             logger.skip("Savings pop up did not appear.");
