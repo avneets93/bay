@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -71,7 +72,7 @@ public class BaseTest {
         else {
             logger.log(Status.SKIP, result.getTestName());
         }
-        //driver.quit();
+        driver.quit();
     }
     @AfterTest
     public void teardownReport(){
@@ -89,7 +90,8 @@ public class BaseTest {
 
         } else if (browserName.equalsIgnoreCase("firefox")) {
             //WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
+            FirefoxOptions options = new FirefoxOptions();
+            driver = new FirefoxDriver(options);
         }
         else {
            // WebDriverManager.edgedriver().setup();
