@@ -37,7 +37,7 @@ public class SmokeTests extends BaseTest {
         homePage.searchProductWithAutosugtn("mango","mango women in Women's Clothing");
         ProductArrayEvents productArray = new ProductArrayEvents();
         productArray.sortinresults("Newest");
-       productArray.verifySearchResults("mango women");
+        productArray.verifySearchResults("mango women");
 
 
     }
