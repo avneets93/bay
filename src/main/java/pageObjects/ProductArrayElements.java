@@ -11,4 +11,5 @@ public interface ProductArrayElements {
     String quickView = "(//a[@class='quickview hidden-sm-down text-center'])";
     String cartCount = "//span[@class = \"minicart-quantity tabbedExperience-minicart-quantity\"]";
 String sortDropdown = "div[id=\"algolia-sort-by-placeholder\"] select";
+String selectedsortOption = "select option[selected]";
 }
