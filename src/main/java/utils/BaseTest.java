@@ -92,6 +92,7 @@ public class BaseTest {
 
             //WebDriverManager.firefoxdriver().setup();
             FirefoxOptions options = new FirefoxOptions();
+            options.addArguments("--headless");
             driver = new FirefoxDriver(options);
 
           
