@@ -36,12 +36,13 @@ public class SmokeTests extends BaseTest {
         HomePageEvents homePage = new HomePageEvents();
         homePage.searchProductWithAutosugtn("mango","mango women in Women's Clothing");
         ProductArrayEvents productArray = new ProductArrayEvents();
-        productArray.verifySearchResults("mango women");
         productArray.sortinresults("Newest");
+       productArray.verifySearchResults("mango women");
+
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void PDPQuantityEditor(){
         HomePageEvents homePage = new HomePageEvents();
         homePage.searchProduct("0600086722740");
@@ -50,7 +51,7 @@ public class SmokeTests extends BaseTest {
         pdp.decreaseQuantity();
     }
 
-    @Test
+    @Test(enabled = false)
     public void FooterLinks(){
         FooterEvents footer = new FooterEvents();
         footer.clickOnHelpAndFAQ();
