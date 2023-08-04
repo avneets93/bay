@@ -1,5 +1,6 @@
 package pageEvents;
 
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -9,16 +10,16 @@ import utils.BaseTest;
 import utils.FetchElements;
 
 public class ProductArrayEvents {
-
+    FetchElements fetch;
     public void verifySearchResults(String searchQuery){
-        FetchElements fetch = new FetchElements();
+        fetch = new FetchElements();
         String searchResult = fetch.getElement("XPATH", ProductArrayElements.searchResult).getText();
         String cleanSearchResult = searchResult.substring(2, searchResult.length() - 2);
         Assert.assertEquals(cleanSearchResult, searchQuery);
     }
 
     public void verifyCartTotal(int expectedTotalInt){
-        FetchElements fetch = new FetchElements();
+        fetch = new FetchElements();
         String actualTotal = fetch.getElement("XPATH",ProductArrayElements.cartCount).getText();
 
         String expectedTotal = String.valueOf(expectedTotalInt);
@@ -26,7 +27,7 @@ public class ProductArrayEvents {
     }
 
     public void hoverOverProduct(int product){   // here we can specify which product to hover from the product list
-        FetchElements fetch = new FetchElements();
+        fetch = new FetchElements();
         String productToHover = "(" + ProductArrayElements.quickView +")["+product+"]";
         WebElement hoverElement = fetch.getElement("XPATH", productToHover);
         Actions actions = new Actions(BaseTest.driver);
@@ -34,20 +35,22 @@ public class ProductArrayEvents {
     }
 
     public void clickOnQuickView(int product){
-        FetchElements fetch = new FetchElements();
+        fetch = new FetchElements();
         String quickViewID = "(" + ProductArrayElements.quickView +")["+product+"]";
         fetch.getElement("XPATH",quickViewID).click();
 
     }
     public void sortinresults(String sort){
-        FetchElements fetch = new FetchElements();
+        fetch = new FetchElements();
         WebElement dropdown =fetch.getElement("CSS",ProductArrayElements.sortDropdown);
         Select select = new Select(dropdown);
-        select.selectByIndex(2);
-         dropdown =fetch.getElement("CSS",ProductArrayElements.sortDropdown);
-        String selectedOptionText = select.getFirstSelectedOption().getText();
-        Assert.assertEquals(selectedOptionText,sort);
+            select.selectByIndex(2);
+            String selectedOptionText = fetch.getElement("CSS",ProductArrayElements.selectedsortOption).getText();
+            Assert.assertEquals(selectedOptionText,sort);
+
+        }
+
 
 
     }
-}
+
