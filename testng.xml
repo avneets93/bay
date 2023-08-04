@@ -8,7 +8,9 @@
         <parameter name="browserName" value="firefox"/>
         <classes>
             <class name="SmokeTests">
-
+                <methods>
+                    
+                </methods>
             </class>
 
         </classes>

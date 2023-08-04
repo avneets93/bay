@@ -29,7 +29,7 @@ public class FetchElements {
                 return null;
         }
     }
-public By identifierType(String identifierType, String identifier) {
+public By identifierTypeBy(String identifierType, String identifier) {
 
     switch (identifierType) {
         case "ID":
@@ -47,16 +47,6 @@ public By identifierType(String identifierType, String identifier) {
 
     }
 }
-public WebElement explictwait(String identifierType, String identifier){
-    WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(20));
-    wait.until(ExpectedConditions.visibilityOfElementLocated(identifierType(identifierType,identifier)));
-    return null;
-}
-    public WebElement implcitwait(String identifierType, String identifier){
-       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        return null;
-    }
-
 
     public List<WebElement> getListOfElements(String identifierType, String identifier){
         switch (identifierType){

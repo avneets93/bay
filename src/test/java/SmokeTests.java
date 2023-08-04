@@ -6,7 +6,7 @@ import utils.BaseTest;
 
 public class SmokeTests extends BaseTest {
 
-    @Test(enabled = false)
+    @Test
     public void testSearchBox(){
         HomePageEvents homePage = new HomePageEvents();
         homePage.searchProduct("towel");
@@ -31,7 +31,7 @@ public class SmokeTests extends BaseTest {
 
         productArray.verifyCartTotal(1);
     }
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void autosuggestionSearch(){
         HomePageEvents homePage = new HomePageEvents();
         homePage.searchProductWithAutosugtn("mango","mango women in Women's Clothing");
@@ -42,7 +42,7 @@ public class SmokeTests extends BaseTest {
 
     }
 
-    @Test(enabled = false)
+    @Test
     public void PDPQuantityEditor(){
         HomePageEvents homePage = new HomePageEvents();
         homePage.searchProduct("0600086722740");
@@ -51,7 +51,7 @@ public class SmokeTests extends BaseTest {
         pdp.decreaseQuantity();
     }
 
-    @Test(enabled = false)
+    @Test
     public void FooterLinks(){
         FooterEvents footer = new FooterEvents();
         footer.clickOnHelpAndFAQ();

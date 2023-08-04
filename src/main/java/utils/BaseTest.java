@@ -83,25 +83,27 @@ public class BaseTest {
         if(browserName.equalsIgnoreCase("chrome")){
 
             ChromeOptions options = new ChromeOptions();
-            options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+           // options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
             //WebDriverManager.chromedriver().setup();
             options.addArguments("--headless=new");
             driver = new ChromeDriver(options);
 
         } else if (browserName.equalsIgnoreCase("firefox")) {
+
             //WebDriverManager.firefoxdriver().setup();
             FirefoxOptions options = new FirefoxOptions();
             driver = new FirefoxDriver(options);
+
+          
         }
         else {
-           // WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
         }
     }
     public void dismissSavingsPopUp(){
-        WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(20));
         try{
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("bx-form-2131232-step-1")));
+            Utilities util = new Utilities();
+            util.explictwait("ID","bx-close-inside-2131232",10);
             driver.findElement(By.id("bx-close-inside-2131232")).click();
             driver.navigate().refresh();
         }
