@@ -41,6 +41,11 @@
             <version>7.8.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.4.1</version>
+        </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
