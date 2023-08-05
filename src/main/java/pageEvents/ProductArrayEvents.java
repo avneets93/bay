@@ -44,9 +44,9 @@ public class ProductArrayEvents {
         fetch = new FetchElements();
         WebElement dropdown =fetch.getElement("CSS",ProductArrayElements.sortDropdown);
         Select select = new Select(dropdown);
-            select.selectByIndex(2);
-            String selectedOptionText = fetch.getElement("CSS",ProductArrayElements.selectedsortOption).getText();
-            Assert.assertEquals(selectedOptionText,sort);
+        select.selectByIndex(2);
+        String selectedOptionText = fetch.getElement("CSS",ProductArrayElements.selectedsortOption).getText();
+        Assert.assertEquals(selectedOptionText,sort);
 
         }
 
