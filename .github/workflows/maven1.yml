@@ -1,0 +1,32 @@
+name: chrome
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Set up Chrome WebDriver
+      run: |
+        LATEST_CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        wget -q "https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+        unzip chromedriver_linux64.zip -d /usr/local/bin
+        rm chromedriver_linux64.zip
+    - name: Build with Maven and Run Tests in Headless Chrome
+      run: mvn -B package --file pom.xml
+      env:
+        CHROME_BIN: /usr/bin/google-chrome-stable
+        GOOG_CHROME_OPTIONS: '{"args": ["--headless", "--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage", "--window-size=1920,1080"]}'
