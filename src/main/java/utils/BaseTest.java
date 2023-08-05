@@ -52,7 +52,7 @@ public class BaseTest {
         setupDriver(browserName);
         driver.get(Constants.url);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         dismissSavingsPopUp();
     }
     @AfterMethod
