@@ -9,6 +9,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -84,7 +85,12 @@ public class BaseTest {
             ChromeOptions options = new ChromeOptions();
             options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
             //options.addArguments("--headless=new");
+            options.addArguments("--disable-blink-features=AutomationControlled");
+            options.addArguments("--disable-extensions");
+            options.setExperimentalOption("useAutomationExtension", false);
             driver = new ChromeDriver(options);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})");
 
         } else if (browserName.equalsIgnoreCase("firefox")) {
             driver = new FirefoxDriver();

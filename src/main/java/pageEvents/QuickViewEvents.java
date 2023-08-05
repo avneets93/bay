@@ -14,6 +14,6 @@ public class QuickViewEvents {
 
         FetchElements fetch = new FetchElements();
         fetch.getElement("ID","qv-add-to-cart-btn").click();
-
+        fetch.getElement("CSS",ProductArrayElements.closeAddToBag).click();
     }
 }

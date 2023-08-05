@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import pageObjects.HomePageElements;
+import pageObjects.OrdersAndReturnsElements;
 import utils.FetchElements;
 
 import java.util.List;
@@ -27,4 +28,13 @@ public class HomePageEvents {
         suggestionsList.get(1).click();
         Assert.assertEquals(getTextsuggestion, suggestionname);
     }
+    public void clickOrdersAndReturns(){
+        fetch = new FetchElements();
+        fetch.getElement("XPATH",HomePageElements.ordersAndReturns).click();
+        String header = fetch.getElement("CSS",OrdersAndReturnsElements.headerText).getText();
+        Assert.assertEquals(header,"Check Order Status");
+    }
 }
+
+
+

@@ -12,4 +12,5 @@ public interface ProductArrayElements {
     String cartCount = "//span[@class = \"minicart-quantity tabbedExperience-minicart-quantity\"]";
     String sortDropdown = "div[id=\"algolia-sort-by-placeholder\"] select";
     String selectedsortOption = "select option[selected]";
+    String closeAddToBag = ".close.fa-pull-right";
 }
