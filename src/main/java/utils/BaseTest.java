@@ -93,10 +93,10 @@ public class BaseTest {
         } else if (browserName.equalsIgnoreCase("firefox")) {
 
             //WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
-            //FirefoxOptions options = new FirefoxOptions();
-            //options.addArguments("--headless");
-            //driver = new FirefoxDriver(options);
+           // driver = new FirefoxDriver();
+            FirefoxOptions options = new FirefoxOptions();
+            options.addArguments("--headless");
+            driver = new FirefoxDriver(options);
 
           
         }
