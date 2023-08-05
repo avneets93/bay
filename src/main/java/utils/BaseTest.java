@@ -16,9 +16,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -82,7 +80,7 @@ public class BaseTest {
 
     public void setupDriver(String browserName){
         if(browserName.equalsIgnoreCase("chrome")){
-
+            WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
             options.addArguments("--disable-blink-features=AutomationControlled");
