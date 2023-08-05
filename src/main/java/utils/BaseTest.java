@@ -9,6 +9,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -83,19 +84,25 @@ public class BaseTest {
         if(browserName.equalsIgnoreCase("chrome")){
 
             ChromeOptions options = new ChromeOptions();
-           // options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-            //WebDriverManager.chromedriver().setup();
+            options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+            options.addArguments("--disable-blink-features=AutomationControlled");
+            options.addArguments("--disable-extensions");
+            options.setExperimentalOption("useAutomationExtension", false);
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--headless=new");
             driver = new ChromeDriver(options);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})");
 
         } else if (browserName.equalsIgnoreCase("firefox")) {
 
-            //WebDriverManager.firefoxdriver().setup();
+           // driver = new FirefoxDriver();
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("--headless");
             driver = new FirefoxDriver(options);
 
-          
+
         }
         else {
             driver = new EdgeDriver();

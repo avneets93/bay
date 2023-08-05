@@ -15,7 +15,7 @@ public class SmokeTests extends BaseTest {
         productArray.verifySearchResults("towel");
     }
 
-    @Test(enabled = false)
+    @Test
     public void addToCartFromQuickView(){
         HomePageEvents homePage = new HomePageEvents();
         homePage.searchProduct("towel");
@@ -31,13 +31,13 @@ public class SmokeTests extends BaseTest {
 
         productArray.verifyCartTotal(1);
     }
-    @Test(enabled = false)
+    @Test
     public void autosuggestionSearch(){
         HomePageEvents homePage = new HomePageEvents();
         homePage.searchProductWithAutosugtn("mango","mango women in Women's Clothing");
         ProductArrayEvents productArray = new ProductArrayEvents();
         productArray.sortinresults("Newest");
-       productArray.verifySearchResults("mango women");
+        productArray.verifySearchResults("mango women");
 
 
     }
@@ -56,6 +56,14 @@ public class SmokeTests extends BaseTest {
         FooterEvents footer = new FooterEvents();
         footer.clickOnHelpAndFAQ();
         footer.clickOnAffirm();
+    }
+    @Test
+    public void checkOrderStatus(){
+        HomePageEvents homePage = new HomePageEvents();
+        homePage.clickOrdersAndReturns();
+        OrdersAndReturnsEvents orders = new OrdersAndReturnsEvents();
+        orders.checkOrderStatus("1216464018","L6Y 0Z1");
+
     }
 
 }

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import pageObjects.HomePageElements;
+import pageObjects.OrdersAndReturnsElements;
 import utils.FetchElements;
 
 import java.util.List;
@@ -20,10 +21,20 @@ public class HomePageEvents {
     public void searchProductWithAutosugtn(String product, String suggestionname) {
         fetch = new FetchElements();
         fetch.getElement("ID", HomePageElements.searchBox).sendKeys(product);
-        WebElement autosuggestion = fetch.getElement("CSS", HomePageElements.autosuggestion);
-        List<WebElement> suggestionsList = autosuggestion.findElements(By.tagName("li"));
+        //WebElement autosuggestion = fetch.getElement("CSS", HomePageElements.autosuggestion);
+        //List<WebElement> suggestionsList = autosuggestion.findElements(By.tagName("li"));
+        List<WebElement> suggestionsList = fetch.getListOfElements("CSS",HomePageElements.suggestionList);
         String getTextsuggestion = suggestionsList.get(1).getText();
         suggestionsList.get(1).click();
         Assert.assertEquals(getTextsuggestion, suggestionname);
     }
+    public void clickOrdersAndReturns(){
+        fetch = new FetchElements();
+        fetch.getElement("XPATH",HomePageElements.ordersAndReturns).click();
+        String header = fetch.getElement("CSS",OrdersAndReturnsElements.headerText).getText();
+        Assert.assertEquals(header,"Check Order Status");
+    }
 }
+
+
+
