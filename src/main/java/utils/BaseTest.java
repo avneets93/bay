@@ -15,6 +15,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -84,16 +85,24 @@ public class BaseTest {
 
             ChromeOptions options = new ChromeOptions();
             options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-            //options.addArguments("--headless=new");
             options.addArguments("--disable-blink-features=AutomationControlled");
             options.addArguments("--disable-extensions");
             options.setExperimentalOption("useAutomationExtension", false);
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--headless=new");
             driver = new ChromeDriver(options);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})");
 
         } else if (browserName.equalsIgnoreCase("firefox")) {
-            driver = new FirefoxDriver();
+
+           // driver = new FirefoxDriver();
+            FirefoxOptions options = new FirefoxOptions();
+            options.addArguments("--headless");
+            driver = new FirefoxDriver(options);
+
+
         }
         else {
             driver = new EdgeDriver();
