@@ -85,15 +85,18 @@ public class BaseTest {
             ChromeOptions options = new ChromeOptions();
            // options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
             //WebDriverManager.chromedriver().setup();
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--headless=new");
             driver = new ChromeDriver(options);
 
         } else if (browserName.equalsIgnoreCase("firefox")) {
 
             //WebDriverManager.firefoxdriver().setup();
-            FirefoxOptions options = new FirefoxOptions();
-            options.addArguments("--headless");
-            driver = new FirefoxDriver(options);
+            driver = new FirefoxDriver();
+            //FirefoxOptions options = new FirefoxOptions();
+            //options.addArguments("--headless");
+            //driver = new FirefoxDriver(options);
 
           
         }
