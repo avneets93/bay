@@ -9,7 +9,7 @@
         <classes>
             <class name="SmokeTests">
                 <methods>
-                    <include name="addToCartFromQuickView"/>
+                    <include name="testSearchBox"/>
                 </methods>
             </class>
 
