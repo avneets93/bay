@@ -9,7 +9,7 @@
         <classes>
             <class name="SmokeTests">
                 <methods>
-                    <include name="testSearchBox"/>
+                    <include name="FooterLinks"/>
                 </methods>
             </class>
 
