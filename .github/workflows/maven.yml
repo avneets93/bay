@@ -29,4 +29,4 @@ jobs:
                           ./script/InstallChrome.sh 
    
     - name: Build with Maven
-      run: mvn -B clean test
+      run: mvn -B package --file pom.xml test
