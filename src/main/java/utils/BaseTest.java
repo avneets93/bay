@@ -91,7 +91,7 @@ public class BaseTest {
             options.setExperimentalOption("useAutomationExtension", false);
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
-            //options.addArguments("--headless=new");
+            options.addArguments("--headless=new");
             driver = new ChromeDriver(options);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})");
