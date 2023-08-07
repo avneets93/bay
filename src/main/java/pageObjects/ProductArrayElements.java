@@ -13,4 +13,5 @@ public interface ProductArrayElements {
     String sortDropdown = "div[id=\"algolia-sort-by-placeholder\"] select";
     String selectedsortOption = "select option[selected]";
     String closeAddToBag = ".close.fa-pull-right";
+    String searchResultwithCategory = "//div[@id='algolia-stats-placeholder']//h1[contains(text(),searchQuery)]";
 }
