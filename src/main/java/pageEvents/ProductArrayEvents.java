@@ -17,7 +17,11 @@ public class ProductArrayEvents {
         String cleanSearchResult = searchResult.substring(2, searchResult.length() - 2);
         Assert.assertEquals(cleanSearchResult, searchQuery);
     }
-
+    public void verifySearchResultsWithCat(String searchQuery){
+        fetch = new FetchElements();
+        String searchResult = fetch.getElement("XPATH", ProductArrayElements.searchResultwithCategory).getText();
+        Assert.assertEquals(searchResult, searchQuery);
+    }
     public void verifyCartTotal(int expectedTotalInt){
         fetch = new FetchElements();
         String actualTotal = fetch.getElement("XPATH",ProductArrayElements.cartCount).getText();
@@ -26,13 +30,14 @@ public class ProductArrayEvents {
         Assert.assertEquals(actualTotal, expectedTotal);
     }
 
-    public void hoverOverProduct(int product){   // here we can specify which product to hover from the product list
+    public WebElement hoverOverProduct(int product) {   // here we can specify which product to hover from the product list
         fetch = new FetchElements();
-        String productToHover = "(" + ProductArrayElements.quickView +")["+product+"]";
-        WebElement hoverElement = fetch.getElement("XPATH", productToHover);
-        Actions actions = new Actions(BaseTest.driver);
-        actions.moveToElement(hoverElement).perform();
+        String productToHover = "(" + ProductArrayElements.quickView + ")[" + product + "]";
+        //        Actions actions = new Actions(BaseTest.driver);
+//        actions.moveToElement(hoverElement).perform();
+        return fetch.getElement("XPATH", productToHover);
     }
+
 
     public void clickOnQuickView(int product){
         fetch = new FetchElements();

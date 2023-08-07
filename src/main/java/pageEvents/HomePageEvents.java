@@ -7,6 +7,7 @@ import org.testng.Assert;
 import pageObjects.HomePageElements;
 import pageObjects.OrdersAndReturnsElements;
 import utils.FetchElements;
+import utils.Utilities;
 
 import java.util.List;
 
@@ -33,6 +34,21 @@ public class HomePageEvents {
         fetch.getElement("XPATH",HomePageElements.ordersAndReturns).click();
         String header = fetch.getElement("CSS",OrdersAndReturnsElements.headerText).getText();
         Assert.assertEquals(header,"Check Order Status");
+    }
+
+    public WebElement searchProductWithCategoryL1(String product) {
+        fetch = new FetchElements();
+        Utilities utils = new Utilities();
+        utils.explictwait("CSS", HomePageElements.homecategoryL1, 20);
+        return fetch.getElement("CSS", HomePageElements.homecategoryL1);
+
+    }
+    public WebElement searchProductWithCategoryL3(String product) {
+        fetch = new FetchElements();
+        Utilities utils = new Utilities();
+        utils.explictwait("CSS", HomePageElements.homecategoryL3, 20);
+        return fetch.getElement("CSS", HomePageElements.homecategoryL3);
+
     }
 }
 
