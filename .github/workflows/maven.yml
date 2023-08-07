@@ -20,13 +20,5 @@ jobs:
         java-version: '20'
         distribution: 'temurin'
         cache: maven
-    - name: Install Google Chrome 
-
-      run: |
-
-              chmod +x ./script/InstallChrome.sh
-
-                          ./script/InstallChrome.sh 
-   
     - name: Build with Maven
-      run: mvn -B package --file pom.xml test
+      run: mvn clean verify -Dtestng.dtd.http=true
