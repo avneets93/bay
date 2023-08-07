@@ -11,12 +11,14 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -51,7 +53,8 @@ public class BaseTest {
         setupDriver(browserName);
         driver.get(Constants.url);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
         dismissSavingsPopUp();
     }
     @AfterMethod
@@ -88,23 +91,29 @@ public class BaseTest {
             options.setExperimentalOption("useAutomationExtension", false);
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--headless=new");
+            //options.addArguments("--headless=new");
             driver = new ChromeDriver(options);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})");
 
         } else if (browserName.equalsIgnoreCase("firefox")) {
 
-           // driver = new FirefoxDriver();
-            FirefoxOptions options = new FirefoxOptions();
-            options.addArguments("--headless");
-            driver = new FirefoxDriver(options);
+           driver = new FirefoxDriver();
+//            FirefoxOptions options = new FirefoxOptions();
+//            options.addArguments("--headless");
+//            driver = new FirefoxDriver(options);
 
 
         }
         else {
             driver = new EdgeDriver();
         }
+    }
+    public WebElement mouseactions(WebElement ele){
+        Actions actions = new Actions(driver);
+        actions.moveToElement(ele).build().perform();
+        return ele;
+
     }
     public void dismissSavingsPopUp(){
         try{
