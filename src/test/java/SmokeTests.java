@@ -25,8 +25,6 @@ public class SmokeTests extends BaseTest {
         ProductArrayEvents productArray = new ProductArrayEvents();
         productArray.verifySearchResults("towel");
         //scroll into view
-
-        mouseactions(productArray.hoverOverProduct(1));
         productArray.clickOnQuickView(1);
 
         QuickViewEvents quickView = new QuickViewEvents();
@@ -44,11 +42,10 @@ public class SmokeTests extends BaseTest {
     }
     @Test
     public void testSearchResultsWithCat(){
+        Utilities utilities = new Utilities();
         HomePageEvents homePage = new HomePageEvents();
-        mouseactions(homePage.searchProductWithCategoryL1("Home Living"));
-        WebElement ele = mouseactions(homePage.searchProductWithCategoryL3("Cushions"));
-
-        ele.click();
+        homePage.searchProductWithCategoryL1("Home Living");
+        homePage.searchProductWithCategoryL3("Cushions");
         ProductArrayEvents productArray = new ProductArrayEvents();
         productArray.verifySearchResultsWithCat("Cushions");
     }

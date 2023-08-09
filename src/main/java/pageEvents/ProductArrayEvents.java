@@ -8,9 +8,11 @@ import org.testng.Assert;
 import pageObjects.ProductArrayElements;
 import utils.BaseTest;
 import utils.FetchElements;
+import utils.Utilities;
 
 public class ProductArrayEvents {
     FetchElements fetch;
+    Utilities utilities;
     public void verifySearchResults(String searchQuery){
         fetch = new FetchElements();
         String searchResult = fetch.getElement("XPATH", ProductArrayElements.searchResult).getText();
@@ -30,12 +32,13 @@ public class ProductArrayEvents {
         Assert.assertEquals(actualTotal, expectedTotal);
     }
 
-    public WebElement hoverOverProduct(int product) {   // here we can specify which product to hover from the product list
+    public void hoverOverProduct(int product) {   // here we can specify which product to hover from the product list
         fetch = new FetchElements();
         String productToHover = "(" + ProductArrayElements.quickView + ")[" + product + "]";
+        utilities = new Utilities();
+        utilities.mouseActions(fetch.getElement("XPATH", productToHover));
         //        Actions actions = new Actions(BaseTest.driver);
 //        actions.moveToElement(hoverElement).perform();
-        return fetch.getElement("XPATH", productToHover);
     }
 
 

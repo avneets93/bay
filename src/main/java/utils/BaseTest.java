@@ -96,7 +96,7 @@ public class BaseTest {
             options.setExperimentalOption("useAutomationExtension", false);
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--headless=new");
+            //options.addArguments("--headless=new");
             driver = new ChromeDriver(options);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})");
@@ -114,12 +114,7 @@ public class BaseTest {
             driver = new EdgeDriver();
         }
     }
-    public WebElement mouseactions(WebElement ele){
-        Actions actions = new Actions(driver);
-        actions.moveToElement(ele).build().perform();
-        return ele;
 
-    }
     public void dismissSavingsPopUp(){
         try{
             Utilities util = new Utilities();
