@@ -1,8 +1,10 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import pageEvents.*;
 import utils.BaseTest;
+import utils.Utilities;
 
 public class SmokeTests extends BaseTest {
 
@@ -23,7 +25,8 @@ public class SmokeTests extends BaseTest {
         ProductArrayEvents productArray = new ProductArrayEvents();
         productArray.verifySearchResults("towel");
         //scroll into view
-        productArray.hoverOverProduct(1);
+
+        mouseactions(productArray.hoverOverProduct(1));
         productArray.clickOnQuickView(1);
 
         QuickViewEvents quickView = new QuickViewEvents();
@@ -38,8 +41,16 @@ public class SmokeTests extends BaseTest {
         ProductArrayEvents productArray = new ProductArrayEvents();
         productArray.sortinresults("Newest");
         productArray.verifySearchResults("mango women");
+    }
+    @Test
+    public void testSearchResultsWithCat(){
+        HomePageEvents homePage = new HomePageEvents();
+        mouseactions(homePage.searchProductWithCategoryL1("Home Living"));
+        WebElement ele = mouseactions(homePage.searchProductWithCategoryL3("Cushions"));
 
-
+        ele.click();
+        ProductArrayEvents productArray = new ProductArrayEvents();
+        productArray.verifySearchResultsWithCat("Cushions");
     }
 
     @Test
