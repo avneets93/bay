@@ -11,6 +11,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -24,7 +25,12 @@ import org.testng.annotations.*;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
@@ -90,14 +96,12 @@ public class BaseTest {
             options.setExperimentalOption("useAutomationExtension", false);
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--headless=new");
+            //options.addArguments("--headless=new");
             driver = new ChromeDriver(options);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})");
 
         } else if (browserName.equalsIgnoreCase("firefox")) {
-
-           // driver = new FirefoxDriver();
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("--headless");
             driver = new FirefoxDriver(options);
