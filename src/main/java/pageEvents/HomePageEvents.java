@@ -38,17 +38,15 @@ public class HomePageEvents {
     public void searchProductWithCategoryL1(String product) {
         fetch = new FetchElements();
         utilities = new Utilities();
-        String locatorL1 = "//span[contains(text(),\""+product+"\")]";
-        utilities.explictwait("XPATH", locatorL1, 20);
-        utilities.mouseActions(fetch.getElement("XPATH", locatorL1));
+        utilities.explictwait("CSS", HomePageElements.homecategoryL1, 20);
+        utilities.mouseActions(fetch.getElement("CSS", HomePageElements.homecategoryL1));
     }
     public void searchProductWithCategoryL3(String product) {
         fetch = new FetchElements();
         utilities = new Utilities();
-        String locatorL1 = "//span[contains(text(),\""+product+"\")]";
-        utilities.explictwait("XPATH", locatorL1, 20);
-        utilities.mouseActions(fetch.getElement("XPATH", locatorL1));
-        fetch.getElement("XPATH", locatorL1).click();
+        utilities.explictwait("CSS", HomePageElements.homecategoryL3, 20);
+        utilities.mouseActions(fetch.getElement("CSS", HomePageElements.homecategoryL3));
+        fetch.getElement("CSS", HomePageElements.homecategoryL3).click();
     }
 }
 
