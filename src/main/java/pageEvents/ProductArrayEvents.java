@@ -1,12 +1,9 @@
 package pageEvents;
 
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import pageObjects.ProductArrayElements;
-import utils.BaseTest;
 import utils.FetchElements;
 import utils.Utilities;
 

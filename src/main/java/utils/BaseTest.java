@@ -8,29 +8,21 @@ import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import pageObjects.HomePageElements;
 
 import java.io.File;
 import java.lang.reflect.Method;
-import java.net.URL;
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
@@ -118,8 +110,9 @@ public class BaseTest {
     public void dismissSavingsPopUp(){
         try{
             Utilities util = new Utilities();
-            util.explictwait("ID","bx-close-inside-2131232",10);
-            driver.findElement(By.id("bx-close-inside-2131232")).click();
+            FetchElements fetch = new FetchElements();
+            fetch.getElement("ID",HomePageElements.savingsPopUp);
+            util.explictwait("ID", HomePageElements.savingsPopUp,10);
             driver.navigate().refresh();
         }
         catch (Exception e){
