@@ -8,24 +8,21 @@ import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import pageObjects.HomePageElements;
 
 import java.io.File;
 import java.lang.reflect.Method;
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
@@ -91,7 +88,7 @@ public class BaseTest {
             options.setExperimentalOption("useAutomationExtension", false);
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--headless=new");
+            //options.addArguments("--headless=new");
             driver = new ChromeDriver(options);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})");
@@ -109,17 +106,13 @@ public class BaseTest {
             driver = new EdgeDriver();
         }
     }
-    public WebElement mouseactions(WebElement ele){
-        Actions actions = new Actions(driver);
-        actions.moveToElement(ele).build().perform();
-        return ele;
 
-    }
     public void dismissSavingsPopUp(){
         try{
             Utilities util = new Utilities();
-            util.explictwait("ID","bx-close-inside-2131232",10);
-            driver.findElement(By.id("bx-close-inside-2131232")).click();
+            FetchElements fetch = new FetchElements();
+            fetch.getElement("ID",HomePageElements.savingsPopUp);
+            util.explictwait("ID", HomePageElements.savingsPopUp,10);
             driver.navigate().refresh();
         }
         catch (Exception e){

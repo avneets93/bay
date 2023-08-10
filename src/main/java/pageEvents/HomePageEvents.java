@@ -1,8 +1,6 @@
 package pageEvents;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import pageObjects.HomePageElements;
 import pageObjects.OrdersAndReturnsElements;
@@ -13,6 +11,7 @@ import java.util.List;
 
 public class HomePageEvents {
     FetchElements fetch;
+    Utilities utilities;
     public void searchProduct(String product) {
         fetch = new FetchElements();
         fetch.getElement("ID", HomePageElements.searchBox).sendKeys(product);
@@ -36,19 +35,18 @@ public class HomePageEvents {
         Assert.assertEquals(header,"Check Order Status");
     }
 
-    public WebElement searchProductWithCategoryL1(String product) {
+    public void searchProductWithCategoryL1(String product) {
         fetch = new FetchElements();
-        Utilities utils = new Utilities();
-        utils.explictwait("CSS", HomePageElements.homecategoryL1, 20);
-        return fetch.getElement("CSS", HomePageElements.homecategoryL1);
-
+        utilities = new Utilities();
+        utilities.explictwait("CSS", HomePageElements.homecategoryL1, 20);
+        utilities.mouseActions(fetch.getElement("CSS", HomePageElements.homecategoryL1));
     }
-    public WebElement searchProductWithCategoryL3(String product) {
+    public void searchProductWithCategoryL3(String product) {
         fetch = new FetchElements();
-        Utilities utils = new Utilities();
-        utils.explictwait("CSS", HomePageElements.homecategoryL3, 20);
-        return fetch.getElement("CSS", HomePageElements.homecategoryL3);
-
+        utilities = new Utilities();
+        utilities.explictwait("CSS", HomePageElements.homecategoryL3, 20);
+        utilities.mouseActions(fetch.getElement("CSS", HomePageElements.homecategoryL3));
+        fetch.getElement("CSS", HomePageElements.homecategoryL3).click();
     }
 }
 
