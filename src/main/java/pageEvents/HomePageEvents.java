@@ -1,16 +1,19 @@
 package pageEvents;
 
+import org.checkerframework.framework.qual.DefaultQualifier;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObjects.HomePageElements;
 import pageObjects.OrdersAndReturnsElements;
 import utils.FetchElements;
+import utils.TestData;
 import utils.Utilities;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomePageEvents {
+    TestData TestData;
     FetchElements fetch;
     Utilities utilities;
     public void searchProduct(String product) {
@@ -50,46 +53,36 @@ public class HomePageEvents {
         fetch.getElement("CSS", HomePageElements.homecategoryL3).click();
     }
     public void findallL1Categories(){
-        ArrayList<String> categories = new ArrayList<String>();
-        categories.add("WOMEN");
-        categories.add("MEN");
-        categories.add("KIDS & BABY");
-        categories.add("SHOES");
-        categories.add("BEAUTY & WELLNESS");
-        categories.add("HOME LIVING");
-        categories.add("MORE");
-        categories.add("BRANDS");
-        categories.add("SALE");
-        categories.add("ZELLERS");
-
+        TestData = new TestData();
         fetch = new FetchElements();
         List<WebElement> allL1Categories = fetch.getListOfElements("CSS",HomePageElements.listCategoryL1);
-        ArrayList<String> linkText = new ArrayList<String>();
+       List<String> linkText = new ArrayList<>();
         for (WebElement ele :allL1Categories ){
             linkText.add(ele.getText());
         }
-try {
-    for (int i = 0; i <= linkText.size(); i++) {
-        String s = linkText.get(i);
-        System.out.println(s);
+//try {
+//    for (int i = 0; i <= linkText.size(); i++) {
+//        String s = linkText.get(i);
+//        System.out.println(s);
+//
+//    }
+//} catch (Exception e){
+//    System.out.println("exception");
+//}
+      boolean listsMatch = compareLists(linkText, TestData.categories);
 
-    }
-} catch (Exception e){
-    System.out.println("exception");
-}
-        boolean listsMatch = compareLists(linkText, categories);
 
-
-        if (listsMatch) {
-            System.out.println("Lists match.");
-        } else {
-            System.out.println("Lists do not match.");
-        }
-        Assert.assertEquals(true,listsMatch);
+//        if (listsMatch) {
+//            System.out.println("Lists match.");
+//        } else {
+//            System.out.println("Lists do not match.");
+//        }
+        //Assert.assertEquals(true,listsMatch);
+        Assert.assertTrue(listsMatch);
         //System.out.println(listsMatch);
     }
 
-    public static <T> boolean compareLists(ArrayList<String> categories, ArrayList<String> linkText) {
+    public static boolean compareLists(List<String> categories, List<String> linkText) {
         if (categories.size() != linkText.size()) {
             return false;
         }
