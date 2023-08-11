@@ -1,15 +1,19 @@
 package pageEvents;
 
+import org.checkerframework.framework.qual.DefaultQualifier;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObjects.HomePageElements;
 import pageObjects.OrdersAndReturnsElements;
 import utils.FetchElements;
+import utils.TestData;
 import utils.Utilities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePageEvents {
+    TestData TestData;
     FetchElements fetch;
     Utilities utilities;
     public void searchProduct(String product) {
@@ -50,7 +54,51 @@ public class HomePageEvents {
         utilities.mouseActions(fetch.getElement("XPATH", locatorL1));
         fetch.getElement("XPATH", locatorL1).click();
     }
-}
+    public void findallL1Categories(){
+        TestData = new TestData();
+        fetch = new FetchElements();
+        List<WebElement> allL1Categories = fetch.getListOfElements("CSS",HomePageElements.listCategoryL1);
+       List<String> linkText = new ArrayList<>();
+        for (WebElement ele :allL1Categories ){
+            linkText.add(ele.getText());
+        }
+//try {
+//    for (int i = 0; i <= linkText.size(); i++) {
+//        String s = linkText.get(i);
+//        System.out.println(s);
+//
+//    }
+//} catch (Exception e){
+//    System.out.println("exception");
+//}
+      boolean listsMatch = compareLists(linkText, TestData.categories);
+
+
+//        if (listsMatch) {
+//            System.out.println("Lists match.");
+//        } else {
+//            System.out.println("Lists do not match.");
+//        }
+        //Assert.assertEquals(true,listsMatch);
+        Assert.assertTrue(listsMatch);
+        //System.out.println(listsMatch);
+    }
+
+    public static boolean compareLists(List<String> categories, List<String> linkText) {
+        if (categories.size() != linkText.size()) {
+            return false;
+        }
+
+        for (int i = 0; i < categories.size(); i++) {
+            if (!categories.get(i).equals(linkText.get(i))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    }
 
 
 
