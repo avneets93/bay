@@ -7,6 +7,7 @@ import pageObjects.OrdersAndReturnsElements;
 import utils.FetchElements;
 import utils.Utilities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePageEvents {
@@ -48,7 +49,61 @@ public class HomePageEvents {
         utilities.mouseActions(fetch.getElement("CSS", HomePageElements.homecategoryL3));
         fetch.getElement("CSS", HomePageElements.homecategoryL3).click();
     }
+    public void findallL1Categories(){
+        ArrayList<String> categories = new ArrayList<String>();
+        categories.add("WOMEN");
+        categories.add("MEN");
+        categories.add("KIDS & BABY");
+        categories.add("SHOES");
+        categories.add("BEAUTY & WELLNESS");
+        categories.add("HOME LIVING");
+        categories.add("MORE");
+        categories.add("BRANDS");
+        categories.add("SALE");
+        categories.add("ZELLERS");
+
+        fetch = new FetchElements();
+        List<WebElement> allL1Categories = fetch.getListOfElements("CSS",HomePageElements.listCategoryL1);
+        ArrayList<String> linkText = new ArrayList<String>();
+        for (WebElement ele :allL1Categories ){
+            linkText.add(ele.getText());
+        }
+try {
+    for (int i = 0; i <= linkText.size(); i++) {
+        String s = linkText.get(i);
+        System.out.println(s);
+
+    }
+} catch (Exception e){
+    System.out.println("exception");
 }
+        boolean listsMatch = compareLists(linkText, categories);
+
+
+        if (listsMatch) {
+            System.out.println("Lists match.");
+        } else {
+            System.out.println("Lists do not match.");
+        }
+        Assert.assertEquals(true,listsMatch);
+        //System.out.println(listsMatch);
+    }
+
+    public static <T> boolean compareLists(ArrayList<String> categories, ArrayList<String> linkText) {
+        if (categories.size() != linkText.size()) {
+            return false;
+        }
+
+        for (int i = 0; i < categories.size(); i++) {
+            if (!categories.get(i).equals(linkText.get(i))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    }
 
 
 

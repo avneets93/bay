@@ -70,5 +70,11 @@ public class SmokeTests extends BaseTest {
         orders.checkOrderStatus("1216464018","L6Y 0Z1");
 
     }
+    @Test
+    public void checkallL1Category() {
+
+        HomePageEvents homePage = new HomePageEvents();
+        homePage.findallL1Categories();
+    }
 
 }
