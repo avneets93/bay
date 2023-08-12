@@ -1,6 +1,5 @@
 package pageEvents;
 
-import org.checkerframework.framework.qual.DefaultQualifier;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObjects.HomePageElements;
@@ -9,11 +8,12 @@ import utils.FetchElements;
 import utils.TestData;
 import utils.Utilities;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomePageEvents {
-    TestData TestData;
+    TestData testData;
     FetchElements fetch;
     Utilities utilities;
     public void searchProduct(String product) {
@@ -54,8 +54,9 @@ public class HomePageEvents {
         utilities.mouseActions(fetch.getElement("XPATH", locatorL1));
         fetch.getElement("XPATH", locatorL1).click();
     }
-    public void findallL1Categories(){
-        TestData = new TestData();
+    public void findallL1Categories() {
+        testData = new TestData();
+        utilities = new Utilities();
         fetch = new FetchElements();
         List<WebElement> allL1Categories = fetch.getListOfElements("CSS",HomePageElements.listCategoryL1);
        List<String> linkText = new ArrayList<>();
@@ -71,31 +72,15 @@ public class HomePageEvents {
 //} catch (Exception e){
 //    System.out.println("exception");
 //}
-      boolean listsMatch = compareLists(linkText, TestData.categories);
-
-
-//        if (listsMatch) {
-//            System.out.println("Lists match.");
-//        } else {
-//            System.out.println("Lists do not match.");
+        boolean listsMatch = utilities.compareLists(linkText, testData.categories);
+//        boolean listsMatch = false;
+//        try {
+//            listsMatch = compareLists(linkText, testData.getCategories());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
 //        }
-        //Assert.assertEquals(true,listsMatch);
         Assert.assertTrue(listsMatch);
         //System.out.println(listsMatch);
-    }
-
-    public static boolean compareLists(List<String> categories, List<String> linkText) {
-        if (categories.size() != linkText.size()) {
-            return false;
-        }
-
-        for (int i = 0; i < categories.size(); i++) {
-            if (!categories.get(i).equals(linkText.get(i))) {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     }
