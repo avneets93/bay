@@ -9,7 +9,7 @@
         <classes>
             <class name="SmokeTests">
                 <methods>
-                    <include name="testSearchResultsWithCat"/>
+                    <include name="checkallL1Category"/>
                 </methods>
             </class>
 
