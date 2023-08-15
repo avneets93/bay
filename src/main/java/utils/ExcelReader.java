@@ -2,6 +2,7 @@ package utils;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.Sheet;
 
@@ -12,16 +13,16 @@ import java.util.Hashtable;
 
 public class ExcelReader {
 
-    public Sheet sheet;
-    public Workbook workbook = null;
+    public XSSFSheet sheet;
+    public XSSFWorkbook workbook = null;
     public Hashtable<String,Integer> dict = new Hashtable<String, Integer>();
 
     public ExcelReader(String sheetName) throws IOException {
         try{
             File file = new File(System.getProperty("user.dir")+ File.separator+"TestData"+File.separator+"TestData.xlsx");
             FileInputStream inputStream = new FileInputStream(file);
-            Workbook testData = new XSSFWorkbook(inputStream);
-            sheet = testData.getSheet(sheetName);
+            workbook = new XSSFWorkbook(inputStream);
+            sheet = workbook.getSheet(sheetName);
         }
         catch (IOException e){
             throw new IOException();

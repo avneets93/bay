@@ -1,10 +1,15 @@
 import org.testng.annotations.Test;
 import pageEvents.*;
 import utils.BaseTest;
+import utils.ExcelReader;
+import utils.TestData;
 import utils.Utilities;
+
+import java.io.IOException;
 
 public class SmokeTests extends BaseTest {
 
+    TestData testData = new TestData();
     @Test
     public void testSearchBox(){
         HomePageEvents homePage = new HomePageEvents();
@@ -68,13 +73,13 @@ public class SmokeTests extends BaseTest {
         homePage.clickOrdersAndReturns();
         OrdersAndReturnsEvents orders = new OrdersAndReturnsEvents();
         orders.checkOrderStatus("1216464018","L6Y 0Z1");
+        //orders.checkOrderStatus(testData.hash.get("Order ID"),testData.hash.get("Postal Code"))
 
     }
     @Test
-    public void checkallL1Category() {
-
+    public void checkAllL1Category() throws IOException {
         HomePageEvents homePage = new HomePageEvents();
-        homePage.findallL1Categories();
+        homePage.findAllL1Categories(testData.getCategories());
     }
 
 }

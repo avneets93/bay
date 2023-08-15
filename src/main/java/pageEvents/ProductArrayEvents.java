@@ -1,9 +1,11 @@
 package pageEvents;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import pageObjects.ProductArrayElements;
+import utils.BaseTest;
 import utils.FetchElements;
 import utils.Utilities;
 
@@ -42,8 +44,10 @@ public class ProductArrayEvents {
     public void clickOnQuickView(int product){
         fetch = new FetchElements();
         String quickViewID = "(" + ProductArrayElements.quickView +")["+product+"]";
-        fetch.getElement("XPATH",quickViewID).click();
-
+        WebElement quickViewLink = fetch.getElement("XPATH",quickViewID);
+        //fetch.getElement("XPATH",quickViewID).click();
+        JavascriptExecutor js = (JavascriptExecutor) BaseTest.driver;
+        js.executeScript("arguments[0].click();",quickViewLink);
     }
     public void sortinresults(String sort){
         fetch = new FetchElements();

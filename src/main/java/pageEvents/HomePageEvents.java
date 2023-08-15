@@ -54,12 +54,12 @@ public class HomePageEvents {
         utilities.mouseActions(fetch.getElement("XPATH", locatorL1));
         fetch.getElement("XPATH", locatorL1).click();
     }
-    public void findallL1Categories() {
+    public void findAllL1Categories(List<String> categories) {
         testData = new TestData();
         utilities = new Utilities();
         fetch = new FetchElements();
         List<WebElement> allL1Categories = fetch.getListOfElements("CSS",HomePageElements.listCategoryL1);
-       List<String> linkText = new ArrayList<>();
+        List<String> linkText = new ArrayList<>();
         for (WebElement ele :allL1Categories ){
             linkText.add(ele.getText());
         }
@@ -72,15 +72,10 @@ public class HomePageEvents {
 //} catch (Exception e){
 //    System.out.println("exception");
 //}
-        boolean listsMatch = utilities.compareLists(linkText, testData.categories);
-//        boolean listsMatch = false;
-//        try {
-//            listsMatch = compareLists(linkText, testData.getCategories());
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+       // boolean listsMatch = utilities.compareLists(linkText, testData.categories);
+        boolean listsMatch = false;
+        listsMatch = utilities.compareLists(linkText, categories);
         Assert.assertTrue(listsMatch);
-        //System.out.println(listsMatch);
     }
 
     }

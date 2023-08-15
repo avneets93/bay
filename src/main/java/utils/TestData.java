@@ -27,8 +27,8 @@ public class TestData {
     public List<String> getCategories() throws IOException {
         List<String> categories = new ArrayList<>();
         ExcelReader reader = new ExcelReader("TopNav");
-        for(int i = 0; i<=reader.RowCount(); i++){
-            categories.add(reader.ReadCell(i,1));
+        for(int i = 0; i<reader.RowCount(); i++){
+            categories.add(reader.ReadCell(i,0));
         }
         return categories;
     }
