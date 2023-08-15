@@ -11,20 +11,20 @@ public class SmokeTests extends BaseTest {
 
     TestData testData = new TestData();
     @Test
-    public void testSearchBox() {
+    public void testSearchBox() throws IOException {
         HomePageEvents homePage = new HomePageEvents();
-        homePage.searchProduct("towel");
+        homePage.searchProduct(testData.getData("Search String").get(1));
         ProductArrayEvents productArray = new ProductArrayEvents();
-        productArray.verifySearchResults("towel");
+        productArray.verifySearchResults(testData.getData("Search String").get(1));
     }
 
     @Test
-    public void addToCartFromQuickView(){
+    public void addToCartFromQuickView() throws IOException {
         HomePageEvents homePage = new HomePageEvents();
-        homePage.searchProduct("towel");
+        homePage.searchProduct(testData.getData("Search String").get(1));
 
         ProductArrayEvents productArray = new ProductArrayEvents();
-        productArray.verifySearchResults("towel");
+        productArray.verifySearchResults(testData.getData("Search String").get(1));
         //scroll into view
         productArray.clickOnQuickView(1);
 
@@ -34,27 +34,27 @@ public class SmokeTests extends BaseTest {
         productArray.verifyCartTotal(1);
     }
     @Test
-    public void autosuggestionSearch(){
+    public void autosuggestionSearch() throws IOException {
         HomePageEvents homePage = new HomePageEvents();
-        homePage.searchProductWithAutosugtn("mango","mango women in Women's Clothing");
+        homePage.searchProductWithAutosugtn(testData.getData("Autosuggestion").get(1),testData.getData("Autosuggestion").get(2));
         ProductArrayEvents productArray = new ProductArrayEvents();
-        productArray.sortinresults("Newest");
-        productArray.verifySearchResults("mango women");
+        productArray.sortinresults(testData.getData("Sort").get(1));
+        productArray.verifySearchResults(testData.getData("Search String").get(2));
     }
     @Test
-    public void testSearchResultsWithCat(){
+    public void testSearchResultsWithCat() throws IOException {
         Utilities utilities = new Utilities();
         HomePageEvents homePage = new HomePageEvents();
-        homePage.searchProductWithCategoryL1("Home Living");
-        homePage.searchProductWithCategoryL3("Cushions");
+        homePage.searchProductWithCategoryL1(testData.getData("L1 category").get(1));
+        homePage.searchProductWithCategoryL3(testData.getData("L3 Category").get(1));
         ProductArrayEvents productArray = new ProductArrayEvents();
-        productArray.verifySearchResultsWithCat("Cushions");
+        productArray.verifySearchResultsWithCat(testData.getData("L3 Category").get(1));
     }
 
     @Test
-    public void PDPQuantityEditor(){
+    public void PDPQuantityEditor() throws IOException {
         HomePageEvents homePage = new HomePageEvents();
-        homePage.searchProduct("0600086722740");
+        homePage.searchProduct(testData.getData("Product").get(1));
         PDPEvents pdp = new PDPEvents();
         pdp.increaseQuantity();
         pdp.decreaseQuantity();
