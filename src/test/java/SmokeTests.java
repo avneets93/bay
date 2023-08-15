@@ -72,7 +72,7 @@ public class SmokeTests extends BaseTest {
         homePage.clickOrdersAndReturns();
         OrdersAndReturnsEvents orders = new OrdersAndReturnsEvents();
         //orders.checkOrderStatus("1216464018","L6Y 0Z1");
-        orders.checkOrderStatus(testData.getData("Order ID").get(0),testData.getData("Postal Code").get(0));
+        orders.checkOrderStatus(testData.getData("Order ID").get(1),testData.getData("Postal Code").get(1));
 
     }
     @Test
