@@ -36,14 +36,16 @@ public class TestData {
 
     public List<String> getData(String key) throws IOException {
         ExcelReader reader = new ExcelReader("TestInputs");
-        HashMap<String, List<String>> dataMap = new HashMap<>();
-        List<String> inputData = new ArrayList<>();
+        HashMap<String, ArrayList<String>> dataMap = new HashMap<>();
+
         for (int i = 0; i < reader.RowCount(); i++) {
+            ArrayList<String> inputData = new ArrayList<>();
             for (int j = 0; j < reader.ColumnCount(i); j++) {
                 inputData.add(reader.ReadCell(i, j));
             }
             dataMap.put(reader.ReadCell(i, 0), inputData);
         }
+        System.out.println(dataMap.get(key));
         return dataMap.get(key);
     }
 }
