@@ -11,10 +11,9 @@ public class SmokeTests extends BaseTest {
 
     TestData testData = new TestData();
     @Test
-    public void testSearchBox(){
+    public void testSearchBox() {
         HomePageEvents homePage = new HomePageEvents();
         homePage.searchProduct("towel");
-
         ProductArrayEvents productArray = new ProductArrayEvents();
         productArray.verifySearchResults("towel");
     }
@@ -68,12 +67,12 @@ public class SmokeTests extends BaseTest {
         footer.clickOnAffirm();
     }
     @Test
-    public void checkOrderStatus(){
+    public void checkOrderStatus() throws IOException {
         HomePageEvents homePage = new HomePageEvents();
         homePage.clickOrdersAndReturns();
         OrdersAndReturnsEvents orders = new OrdersAndReturnsEvents();
-        orders.checkOrderStatus("1216464018","L6Y 0Z1");
-        //orders.checkOrderStatus(testData.hash.get("Order ID"),testData.hash.get("Postal Code"))
+        //orders.checkOrderStatus("1216464018","L6Y 0Z1");
+        orders.checkOrderStatus(testData.getData("Order ID").get(0),testData.getData("Postal Code").get(0));
 
     }
     @Test
