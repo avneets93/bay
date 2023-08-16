@@ -44,6 +44,7 @@ public class TestData {
             }
             dataMap.put(reader.ReadCell(i, 0), inputData);
         }
+        System.out.println(dataMap.get(key));
         return dataMap.get(key);
     }
 }
