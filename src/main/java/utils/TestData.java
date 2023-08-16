@@ -39,11 +39,12 @@ public class TestData {
         HashMap<String, ArrayList<String>> dataMap = new HashMap<>();
         for (int i = 0; i < reader.RowCount(); i++) {
             ArrayList<String> inputData = new ArrayList<>();
-            for (int j = 0; j < reader.ColumnCount(i); j++) {
+            for (int j = 1; j < reader.ColumnCount(i); j++) {
                 inputData.add(reader.ReadCell(i, j));
             }
             dataMap.put(reader.ReadCell(i, 0), inputData);
         }
+        System.out.println(dataMap.get(key));
         return dataMap.get(key);
     }
 }
