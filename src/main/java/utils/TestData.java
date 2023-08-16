@@ -37,7 +37,6 @@ public class TestData {
     public List<String> getData(String key) throws IOException {
         ExcelReader reader = new ExcelReader("TestInputs");
         HashMap<String, ArrayList<String>> dataMap = new HashMap<>();
-
         for (int i = 0; i < reader.RowCount(); i++) {
             ArrayList<String> inputData = new ArrayList<>();
             for (int j = 0; j < reader.ColumnCount(i); j++) {
