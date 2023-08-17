@@ -39,7 +39,7 @@ public class SmokeTests extends BaseTest {
         homePage.searchProductWithAutosugtn(testData.getData("Autosuggestion").get(0),testData.getData("Autosuggestion").get(1));
         ProductArrayEvents productArray = new ProductArrayEvents();
         productArray.sortinresults(testData.getData("Sort").get(0));
-        productArray.verifySearchResults(testData.getData("Search String").get(0));
+        productArray.verifySearchResults(testData.getData("Search String").get(1));
     }
     @Test
     public void testSearchResultsWithCat() throws IOException {
